@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Job Page</title>
+</head>
+<script type="text/javascript" src="../../js/libs/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../../js/utils/mc-window.js"></script>
+<script type="text/javascript" src="../../js/utils/mc-ajax.js"></script>
+<script type="text/javascript" src="../../js/main/main.html.js"></script>
+<body onload="init()">
+<div><label>Welcome to job manage space, </label><span id="username"></span></div>
+<table border="1" bordercolor="#a0c6e5" style="border-collapse:collapse;"><tbody id="tbody"></tbody></table>
+<div><input type="button" value="addJob" id="addJob" onclick="addJob()" /></div>
+<div>
+    job name: <input type="text" id="jobName" />
+</div>
+<div>
+    job group: <input type="text" id="jobGroup" />
+</div>
+<div>
+    trigger name: <input type="text" id="triggerName" />
+</div>
+<div>
+    trigger group: <input type="text" id="triggerGroup" />
+</div>
+<div>
+    cron express: <input type="text" id="cronExpression" />
+</div>
+<div>
+    class path: <input type="text" id="jobClassName" />
+</div>
+</body>
+</html>

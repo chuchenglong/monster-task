@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry    location="mysql-connector-java-5.1.40.jar"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/chuchenglong"
+                        userId="root"
+                        password="chuchenglong">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.mc.model" targetProject="src/main/java"/>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="com.mc.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
+		
+
+        <table tableName="t_user_info">
+            <!--% 表示全部表-->
+            <!--mysql 配置-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <!--oracle 配置-->
+            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+        </table>
+        <table tableName="qrtz_blob_triggers"></table>
+        <table tableName="qrtz_cron_triggers"></table>
+        <table tableName="qrtz_fired_triggers"></table>
+        <table tableName="qrtz_job_details"></table>
+        <table tableName="qrtz_locks"></table>
+        <table tableName="qrtz_paused_trigger_grps"></table>
+        <table tableName="qrtz_scheduler_state"></table>
+        <table tableName="qrtz_simple_triggers"></table>
+        <table tableName="qrtz_simprop_triggers"></table>
+        <table tableName="qrtz_triggers"></table>
+    </context>
+</generatorConfiguration>
