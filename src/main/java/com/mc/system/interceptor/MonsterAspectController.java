@@ -1,6 +1,7 @@
 package com.mc.system.interceptor;
 
 
+import com.mc.system.servlet.MonsterLog4jUtil;
 import com.mc.system.servlet.MonsterResultManager;
 import com.mc.system.servlet.MonsterServletUtils;
 import org.aspectj.lang.JoinPoint;
@@ -27,7 +28,8 @@ public class MonsterAspectController {
 
     @Before("controllerAspect()")
     public void before(JoinPoint joinPoint) {
-        //如果需要这里可以取出参数进行处理
+        String methedName = joinPoint.getSignature().getName();
+        MonsterLog4jUtil.info("controller " + methedName + " start----------");
         Object[] args = joinPoint.getArgs();
         HttpServletRequest request = (HttpServletRequest)args[0];
         HttpServletResponse response = (HttpServletResponse)args[1];
@@ -41,13 +43,15 @@ public class MonsterAspectController {
             //统一处理异常
             Object[] objs = pjp.getArgs();
             HttpServletResponse response = (HttpServletResponse)objs[1];
+            MonsterLog4jUtil.error("controller error content: " + ex.getMessage());
             MonsterServletUtils.output(response, MonsterResultManager.newFailed(ex.getLocalizedMessage()));
         }
     }
 
     @After("controllerAspect()")
     public void after(JoinPoint joinPoint) {
-//        System.out.println("after aspect executed");
+        String methedName = joinPoint.getSignature().getName();
+        MonsterLog4jUtil.info("controller " + methedName + " end----------");
     }
 
     @AfterReturning(pointcut = "controllerAspect()", returning = "returnVal")

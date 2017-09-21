@@ -13,46 +13,27 @@ import java.util.Date;
  */
 public class MonsterLog4jUtil {
     public static void error(String message) {
-        info(Logger.class, message);
-    }
-
-    public static void error(Class<? extends Object> clazz, String message) {
-        Logger logger = Logger.getLogger(clazz);
-        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String d = fm.format(new Date());
-        logger.error(d + " - " + message);
+        Logger logger = innerGet();
+        logger.error(message);
     }
 
     public static void warn(String message) {
-        info(Logger.class, message);
-    }
-
-    public static void warn(Class<? extends Object> clazz, String message) {
-        Logger logger = Logger.getLogger(clazz);
-        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String d = fm.format(new Date());
-        logger.warn(d + " - " + message);
+        Logger logger = innerGet();
+        logger.warn(message);
     }
 
     public static void info(String message) {
-        info(Logger.class, message);
-    }
-
-    public static void info(Class<? extends Object> clazz, String message) {
-        Logger logger = Logger.getLogger(clazz);
-        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String d = fm.format(new Date());
-        logger.info(d + " - " +message);
+        Logger logger = innerGet();
+        logger.info(message);
     }
 
     public static void debug(String message) {
-        info(Logger.class, message);
+        Logger logger = innerGet();
+        logger.debug(message);
     }
 
-    public static void debug(Class<? extends Object> clazz, String message) {
-        Logger logger = Logger.getLogger(clazz);
-        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String d = fm.format(new Date());
-        logger.debug(d + " - " +message);
+    private static Logger innerGet() {
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        return Logger.getLogger(stackTrace[3].getClassName());
     }
 }

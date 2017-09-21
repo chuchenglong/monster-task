@@ -9,8 +9,13 @@ package com.mc.common;
 public class MonsterContants {
     //system static data
     public static String MONSTER_RESULT = "com.mc.system.servlet.MonsterResultManager";
-    public static String DATE_FORMAT_ONE = "yyyy-MM-dd HH:mm:ss.SSS";
 
+    //date format
+    public static String DATE_FORMAT_ONE = "yyyy-MM-dd HH:mm:ss.SSS";
+    public static String DATE_FORMAT_TWO = "yyyy-MM-dd HH:mm:ss";
+    public static String DATE_FORMAT_THREE = "yyyy-MM-dd";
+
+    //base type
     public static String INT = "int";
     public static String DOUBLE = "double";
     public static String SHORT= "short";
@@ -20,9 +25,11 @@ public class MonsterContants {
     public static String BYTE = "byte";
     public static String FLOAT = "float";
 
+    //operation
     public static String GET = "get";
     public static String SET = "set";
 
+    //number
     public static int NUM_ZERO = 0;
     public static int NUM_ONE = 1;
     public static int NUM_TWO = 2;
