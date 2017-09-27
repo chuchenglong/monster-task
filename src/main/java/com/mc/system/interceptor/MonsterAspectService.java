@@ -1,15 +1,9 @@
 package com.mc.system.interceptor;
 
 import com.mc.system.servlet.MonsterLog4jUtil;
-import com.mc.system.servlet.MonsterResultManager;
-import com.mc.system.servlet.MonsterServletUtils;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @description 事物和service层的一些AOP管理
@@ -28,17 +22,6 @@ public class MonsterAspectService {
     public void before(JoinPoint joinPoint) {
         String methedName = joinPoint.getSignature().getName();
         MonsterLog4jUtil.info("service " + methedName + " start----------");
-    }
-
-    @Around("serviceAspect()")
-    public void around(ProceedingJoinPoint pjp) throws Throwable {
-//        System.out.println("after aspect around");
-        try {
-            pjp.proceed();
-        } catch (Throwable ex) {
-            MonsterLog4jUtil.error("service error content: " + ex.getMessage());
-            throw ex;
-        }
     }
 
     @After("serviceAspect()")

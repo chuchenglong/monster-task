@@ -13,23 +13,23 @@ import java.util.Date;
  */
 public class MonsterLog4jUtil {
     public static void error(String message) {
-        Logger logger = innerGet();
-        logger.error(message);
+        innerGet().error(message);
+    }
+
+    public static void error(String message, Throwable e) {
+        innerGet().error(message, e);
     }
 
     public static void warn(String message) {
-        Logger logger = innerGet();
-        logger.warn(message);
+        innerGet().warn(message);
     }
 
     public static void info(String message) {
-        Logger logger = innerGet();
-        logger.info(message);
+        innerGet().info(message);
     }
 
     public static void debug(String message) {
-        Logger logger = innerGet();
-        logger.debug(message);
+        innerGet().debug(message);
     }
 
     private static Logger innerGet() {

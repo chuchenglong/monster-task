@@ -9,7 +9,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -30,9 +29,6 @@ public class MonsterAspectController {
     public void before(JoinPoint joinPoint) {
         String methedName = joinPoint.getSignature().getName();
         MonsterLog4jUtil.info("controller " + methedName + " start----------");
-        Object[] args = joinPoint.getArgs();
-        HttpServletRequest request = (HttpServletRequest)args[0];
-        HttpServletResponse response = (HttpServletResponse)args[1];
     }
 
     @Around("controllerAspect()")
@@ -43,7 +39,7 @@ public class MonsterAspectController {
             //统一处理异常
             Object[] objs = pjp.getArgs();
             HttpServletResponse response = (HttpServletResponse)objs[1];
-            MonsterLog4jUtil.error("controller error content: " + ex.getMessage());
+            MonsterLog4jUtil.error("controller error content: ", ex);
             MonsterServletUtils.output(response, MonsterResultManager.newFailed(ex.getLocalizedMessage()));
         }
     }
